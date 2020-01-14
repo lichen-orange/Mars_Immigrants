@@ -1,4 +1,4 @@
-package com.mars.mars_immigrants;
+package com.mars.marsimmigrants;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
