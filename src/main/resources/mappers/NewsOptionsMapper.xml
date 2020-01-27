@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mars.marsimmigrants.mapper.newsOptionsDao">
+    <select id="selectNewsOp" resultType="com.mars.marsimmigrants.model.entity.News">
+        select * from nd_news where news_type=1 and news_verifiedStatus=1
+    </select>
+    <update id="updateNewsOpDelete">
+        update nd_news set news_optionsStatus=5 where news_id=#{news_id}
+    </update>
+    <update id="updateNewsOpUp">
+        update nd_news set news_optionsStatus=6 where news_id=#{news_id}
+    </update>
+    <update id="updateNewsOp">
+        update nd_news set news_optionsStatus=0 where news_id=#{news_id}
+    </update>
+</mapper>
