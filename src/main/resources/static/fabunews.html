@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		 <link rel="stylesheet" href="css/amazeui.min.css" />
+		  <link rel="stylesheet" href="css/admin.css" />
+		  <script src="js/layui.js"></script>
+		  <link rel="stylesheet" href="css/layui.css">
+	</head>
+	<body>
+		
+		<div class="admin-content-body">
+      <div class="am-cf am-padding am-padding-bottom-0">
+        <div class="am-fl am-cf">
+          <strong class="am-text-primary am-text-lg">请编辑新闻</strong> 
+        </div>
+      </div>
+
+      <hr>
+ 
+       <input type="text" class="layui-input" value="这里是新闻标题" id="title" />
+	  <textarea id="demo" style="display: none;"></textarea>
+     <br />
+	  
+	  <button class="layui-btn" type="button" id="btn">提交新闻</button>
+
+    
+    </div>
+	
+	<script>
+	layui.use('layedit', function(){
+	  var layedit = layui.layedit;
+	  
+	  //保存图片
+	  layedit.set({
+	    uploadImage: {
+	      url: '' //接口url
+	      ,type: '' //默认post
+	    }
+	  });
+	  
+	  
+	  
+	  
+	  
+	  layedit.build('demo'); //建立编辑器
+	  
+	  
+	});
+	</script>
+	
+	</body>
+	
+</html>
