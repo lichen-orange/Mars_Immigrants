@@ -52,8 +52,8 @@
 
 		//把新闻title 和 content发送给后台
         $("#btn").click(function(){
-        	alert($("#title").val())
-			alert(layedit.getContent(index))
+        	// alert($("#title").val())
+			// alert(layedit.getContent(index))
         	$.ajax({
 				type:"post",
 				url:"addnews",
@@ -65,6 +65,7 @@
 				success:function(result){
                      if (result == 1) {
                      	alert("发布成功")
+						 window.location.href = "newsshenhe.html";
 					 }else{
                      	alert("发布出现了问题")
 					 }

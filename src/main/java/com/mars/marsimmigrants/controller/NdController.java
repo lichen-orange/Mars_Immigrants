@@ -1,11 +1,15 @@
 package com.mars.marsimmigrants.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.mars.marsimmigrants.service.NdService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * @version V1.0
@@ -27,12 +31,28 @@ public class NdController {
     }
 
     //修改密码
-    @RequestMapping("/updatePasd")
-    public String updatePasd(String id,String updatePasd){
-        if (ndService.update(id,updatePasd)){
-            return "/123";//返回用户页
+    @RequestMapping("updatePasd")
+    public void updatePasd(String password, HttpServletResponse response) throws IOException {
+        System.out.println(password);
+        //通过 redis 拿到 用户的id
+        //模拟id 1
+        String id = "1";
+        if (ndService.update(id,password)){
+            System.out.println("修改成功");
+            String resultStr = JSON.toJSONString("1");
+            response.setContentType("text/html");
+            PrintWriter writer = response.getWriter();
+            writer.write(resultStr);
+            writer.flush();
+            writer.close();
         }else {
-            return "/456";//返回修改页面
+            System.out.println("修改失败");
+            String resultStr = JSON.toJSONString("0");
+            response.setContentType("text/html");
+            PrintWriter writer = response.getWriter();
+            writer.write(resultStr);
+            writer.flush();
+            writer.close();
         }
     }
 
