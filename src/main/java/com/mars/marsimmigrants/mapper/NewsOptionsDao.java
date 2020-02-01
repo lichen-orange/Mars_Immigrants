@@ -39,4 +39,27 @@ public interface NewsOptionsDao {
      * @return
      */
     int updateNewsOp(@Param("news_id")int news_id);
+
+    /**
+     * 模糊查询
+     * @param news_title
+     * @param news_content
+     * @return
+     */
+    List<News> selectNewsByTitleOrContent(@Param("news_title")String news_title,@Param("news_content")String news_content);
+
+    /**
+     * 通过id查询新闻
+     * @param news_id
+     * @return
+     */
+    News selectNewsOpById(@Param("news_id")int news_id);
+    /**
+     * 修改新闻
+     * @param news_id
+     * @param news_title
+     * @param news_content
+     * @return
+     */
+    int updateNews(@Param("news_id")int news_id,@Param("news_title")String news_title,@Param("news_content")String news_content);
 }

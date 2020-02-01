@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mars.marsimmigrants.mapper.NewsOptionsDao">
-    <select id="selectNewsOp" resultType="com.mars.marsimmigrants.model.entity.News">
+    <select id="selectNewsOp" resultMap="op">
         select * from nd_news where news_type=1 and news_verifiedStatus=1
     </select>
+    <resultMap id="op" type="com.mars.marsimmigrants.model.entity.News">
+        <id column="news_id" property="news_id"></id>
+        <result property="news_type" column="news_type"></result>
+        <result property="news_title" column="news_title"></result>
+        <result property="news_content" column="news_content"></result>
+        <result property="news_owner" column="news_owner"></result>
+        <result property="news_createdTime" column="news_createdTime"></result>
+        <result property="news_verifiedTime" column="news_verifiedTime"></result>
+        <result property="news_updatedTime" column="news_updatedTime"></result>
+        <result property="news_level" column="news_level"></result>
+        <result property="news_status" column="news_status"></result>
+        <result property="news_verifiedStatus" column="news_verifiedStatus"></result>
+        <result property="news_optionsStatus" column="news_optionsStatus"></result>
+    </resultMap>
+    <select id="selectNewsOpById" resultType="com.mars.marsimmigrants.model.entity.News">
+        select * from nd_news where news_type=1 and news_verifiedStatus=1 and news_id=#{news_id}
+    </select>
+    <select id="selectNewsByTitleOrContent" resultType="com.mars.marsimmigrants.model.entity.News">
+        select * from nd_news where news_type=1 and news_verifiedStatus=1 and ( news_title like "%"#{news_title}"%" or news_content like "%"#{news_content}"%")
+    </select>
+    <update id="updateNews">
+        update nd_news set news_title=#{news_title},news_content=#{news_content},news_updateTime=SYSDATE() where news_id=#{news_id}
+    </update>
+
     <update id="updateNewsOpDelete">
-        update nd_news set news_optionsStatus=5 where news_id=#{news_id}
+        update nd_news set news_optionsStatus=3 where news_id=#{news_id}
     </update>
     <update id="updateNewsOpUp">
         update nd_news set news_optionsStatus=6 where news_id=#{news_id}
