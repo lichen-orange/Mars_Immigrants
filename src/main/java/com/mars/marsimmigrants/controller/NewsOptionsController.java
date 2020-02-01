@@ -5,7 +5,6 @@ import com.mars.marsimmigrants.model.entity.News;
 import com.mars.marsimmigrants.service.NewsOptionsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
