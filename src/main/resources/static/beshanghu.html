@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/amazeui.min.css" />
+		<link rel="stylesheet" href="css/admin.css" />
+		<script src="js/layui.js"></script>
+		<link rel="stylesheet" href="css/layui.css">
+	</head>
+
+	<body>
+		<div class="admin-content-body">
+			<div class="am-cf am-padding am-padding-bottom-0">
+				<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">成为商户</strong><small></small></div>
+			</div>
+
+			<hr>
+			
+			<form class="layui-form" action="">
+				联系人姓名 &nbsp; &nbsp; <input type="text" class="layui-input" />
+				<br /> <br />
+				联系方式 &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;<input type="text" class="layui-input" />
+				<br /> <br />
+				中介名称&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;<input type="text" class="layui-input" />
+				<br /> <br />
+				中介地址&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;<input type="text" class="layui-input" />
+				<br /> <br />
+				  <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+				  
+				   <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </form>
+			<br /> <br />
+			<button type="button" class="layui-btn" id="test1">
+			  <i class="layui-icon">&#xe67c;</i>上传经营许可证照片
+			</button>
+			
+			
+    
+		</div>
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="myplugs/js/plugs.js"></script>
+	    <script>
+			//表单提交走这里
+			layui.use('form', function(){
+			  var form = layui.form;
+			  
+			  //监听提交
+			  form.on('submit(formDemo)', function(data){
+			    layer.msg(JSON.stringify(data.field));
+				//ajax提交data 
+				  // $.ajax({
+				  //       type:"POST",
+				  //       url:"/user/upDate",
+				  //       data:articleFrom,
+				  //       dataType:"JSON",
+				  //       success:function (data) {
+				  //           if(data.flag){
+				  //               layer.closeAll();
+				  //           }
+				  //       }
+				  //   });
+				  //防止页面刷新
+			    return false;
+			  });
+			});
+			
+			
+			
+			
+	    //图片上传 走这里  先上传图片 在通过按钮提交表单
+	    layui.use('upload', function(){
+	      var upload = layui.upload;
+	       
+	      //执行实例
+	      var uploadInst = upload.render({
+	        elem: '#test1' //绑定元素
+	        ,url: '' //上传接口
+	        ,done: function(res){
+	          //上传完毕回调
+			  //获取返回的 json res
+	        }
+	        ,error: function(){
+	          //请求异常回调
+	        }
+	      });
+	    });
+	    </script>
+		
+		      
+
+	</body>
+
+</html>

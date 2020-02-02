@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/amazeui.min.css" />
+		<link rel="stylesheet" href="css/admin.css" />
+		<script src="js/layui.js"></script>
+		<script src="js/jquery-1.11.3.min.js"></script>
+		<script src="javascript/newstongguo.js"></script>
+		<link rel="stylesheet" href="css/layui.css">
+	</head>
+
+	<body>
+		<div class="admin-content-body">
+			<div class="am-cf am-padding am-padding-bottom-0">
+				<div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">新闻管理</strong><small></small></div>
+			</div>
+
+			<hr>
+
+			<div class="am-g">
+				<div class="am-u-sm-12 am-u-md-6">
+					<div class="am-btn-toolbar">
+						<div class="am-btn-group am-btn-group-xs">
+							<button type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span> 新增</button>
+						</div>
+					</div>
+				</div>
+				<div class="am-u-sm-12 am-u-md-3">
+
+				</div>
+				<div class="am-u-sm-12 am-u-md-3">
+					<div class="am-input-group am-input-group-sm">
+						<input id="select"type="text" class="am-form-field" placeholder="请输入新闻标题">
+						<span class="am-input-group-btn">
+            <button class="am-btn am-btn-default" type="button" id="but">搜索</button>
+          </span>
+					</div>
+				</div>
+			</div>
+			<div class="am-g">
+				<div class="am-u-sm-12">
+					<hr>
+				<table id="tab" class="layui-table">
+					<tr>
+						<td>ID</td>
+						<td>标题</td>
+						<td>创建时间</td>
+						<td>操作</td>
+					</tr>
+				</table>
+			
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			$("#select").val()
+			//获取文本框内容
+			//layedit.getContent(index)
+
+			//把新闻title 和 content发送给后台
+			$("#but").click(function() {
+				alert($("#select").val())
+				//alert(layedit.getContent(index))
+				$.ajax({
+					type: "post",
+					url: "selectNewsByTitleOrContent",
+					dataType: "json",
+					data: {
+						news_title: $("#select").val(),
+						//Content:layedit.getContent(index)
+					},
+					success: function (result) {
+						var arr = responseText;
+						var str = "";// 定义用于拼接的字符串
+
+						//var text5="查看详细新闻";
+						var mycars1 = new Array(arr.length);
+						var mycars2 = new Array(arr.length);
+						// var mycars3=new Array(arr.length);
+
+						for (var i = 0; i < arr.length; i++) {
+
+							if (arr[i].news_optionsStatus == 3) {
+								var text2 = "申请撤回等待审核";
+								//var text2="<a href='javascript:void(0);' onclick='test1("+i+")' >"+ text + "</a>";
+							} else if (arr[i].news_optionsStatus == 0) {
+								var text1 = "申请撤回";
+								var text3 = "申请修改";
+								var text2 = "<a href='javascript:void(0);' onclick='test1(" + i + ")' >" + text1 + "</a>&nbsp;" + "<a href='javascript:void(0);' onclick='test3(" + i + ")' >" + text3 + "</a>";
+							} else if (arr[i].news_optionsStatus == 1) {
+								var text2 = "申请撤回已通过"
+							} else if (arr[i].news_optionsStatus == 2) {
+								var text = "上次申请撤回未通过";
+								var text1 = "再次申请撤回";
+								var text3 = "申请修改";
+								var text2 = "<a href='javascript:void(0);' onclick='test1(" + i + ")' >" + text1 + "</a>(" + text + ")&nbsp;<a href='javascript:void(0);' onclick='test3(" + i + ")' >" + text3 + "</a>&nbsp;";
+							} else if (arr[i].news_optionsStatus == 4) {
+								var text = "申请修改已通过";
+								var text1 = "申请撤回";
+								var text3 = "可修改";
+								var text2 = "<a href='javascript:void(0);' onclick='test1(" + i + ")' >" + text1 + "</a>" + "&nbsp;<a href='javascript:void(0);' onclick='test4(" + i + ")' >" + text3 + "</a>(" + text + ")";
+							} else if (arr[i].news_optionsStatus == 5) {
+								var text = "上次申请修改未通过";
+								var text1 = "申请撤回";
+								var text3 = "再次申请修改";
+								var text2 = "<a href='javascript:void(0);' onclick='test1(" + i + ")' >" + text1 + "</a>&nbsp;" + "<a href='javascript:void(0);' onclick='test3(" + i + ")' >" + text3 + "</a>(" + text + ")";
+							} else if (arr[i].news_optionsStatus == 6) {
+								var text2 = "申请撤回等待审核";
+							}
+							var unixTimestamp = new Date( arr[i].news_createdTime ) ;
+							commonTime = unixTimestamp.toLocaleString();
+							mycars1[i] = "<span id='news_id" + i + "' value='" + arr[i].news_id + "'></span>";
+							str = "<tr align='center'><td>"
+									+ i
+									+ "</td><td>"
+									+ arr[i].news_title
+									+ "</td><td>"
+									+ commonTime + mycars1[i]
+									+ "</td><td>"
+									+ text2
+									+ "</td></tr>";
+							// 追加到table中
+							$("#tab").append(str);
+						}
+					}
+				})
+
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		 <!--<link rel="stylesheet" href="css/amazeui.min.css" />-->
+		  <!--<link rel="stylesheet" href="css/admin.css" />-->
+		  <script src="js/layui.js"></script>
+		  <script src="js/jquery-1.11.3.min.js"></script>
+		  <link rel="stylesheet" href="css/layui.css">
+	</head>
+	<body>
+		
+		<div class="admin-content-body">
+      <div class="am-cf am-padding am-padding-bottom-0">
+        <div class="am-fl am-cf">
+          <strong class="am-text-primary am-text-lg">请编辑新闻</strong> 
+        </div>
+      </div>
+
+      <hr>
+ 
+       <input type="text" class="layui-input"  id="title" placeholder="这里是标题" />
+	  <textarea id="demo" style="display: none;"></textarea>
+     <br />
+	  
+	  <button class="layui-btn" type="button" id="btn">提交新闻</button>
+
+    
+    </div>
+	
+	<script>
+	layui.use('layedit', function(){
+	  var layedit = layui.layedit;
+	  
+	  //保存图片
+	  layedit.set({
+	    uploadImage: {
+	      url: 'addnewspic' //接口url
+	      ,type: 'post' //默认post
+	    }
+	  });
+	  
+
+	  var index = layedit.build('demo'); //建立编辑器
+
+
+		//获取标题
+		$("#title").val()
+		//获取文本框内容
+		 layedit.getContent(index)
+
+		//把新闻title 和 content发送给后台
+        $("#btn").click(function(){
+        	// alert($("#title").val())
+			// alert(layedit.getContent(index))
+        	$.ajax({
+				type:"post",
+				url:"addnews",
+				dataType:"json",
+				data:{
+					title:$("#title").val(),
+					Content:layedit.getContent(index)
+				},
+				success:function(result){
+                     if (result == 1) {
+                     	alert("发布成功")
+						 window.location.href = "newsshenhe.html";
+					 }else{
+                     	alert("发布出现了问题")
+					 }
+				},
+				error:function(){
+				     window.alert("访问异常")
+				}
+			})
+		})
+
+	});
+	</script>
+	
+	</body>
+	
+</html>

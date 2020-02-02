@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mars.marsimmigrants.mapper.NdOptionsDao">
+    <!--&lt;!&ndash;//查询新闻&ndash;&gt;-->
+    <!--<select id="getNewsList" resultType="com.mars.marsimmigrants.model.entity.NdNews">-->
+        <!--SELECT * FROM nd_news WHERE news_title LIKE '%'#{content}'%' OR news_content LIKE '%'#{content}'%' AND news_status=1 AND news_verifiedStatus=1 AND news_optionStatus<1-->
+    <!--</select>-->
+    <!--&lt;!&ndash;//查询项目&ndash;&gt;-->
+    <!--<select id="getProgramsList" resultType="com.mars.marsimmigrants.model.entity.NdPrograms">-->
+        <!--SELECT * FROM nd_programs WHERE program_title LIKE '%'+#{content}+'%' OR program_content LIKE '%'+#{content}+'%'-->
+    <!--</select>-->
+    <!--//更新用户密码-->
+    <update id="update">
+        UPDATE nd_users SET user_password=#{updatePasd} WHERE user_id=#{id}
+    </update>
+
+    <!--&lt;!&ndash;//上传项目&ndash;&gt;-->
+    <!--<insert id="items">-->
+        <!--insert into nd_programs values (null,#{title},#{content},#{comment})-->
+    <!--</insert>-->
+
+    <!--&lt;!&ndash;//上传图片&ndash;&gt;-->
+    <!--<insert id="img">-->
+        <!--insert into programs_pic values (null,SELECT LAST_INSERT_ID(),#{programs_pic_address})-->
+    <!--</insert>-->
+
+</mapper>
