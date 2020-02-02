@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mars.marsimmigrants.mapper.NewsOptionsDao">
-    <select id="selectnNd_news" resultMap="op">
-        select * from nd_news where news_type=1 and news_verifiedStatus=1
+<mapper namespace="com.mars.marsimmigrants.mapper.NewsShowDao">
+
+    <select id="ShowNews" resultMap="op">
+        select * from nd_news where  news_verifiedStatus=1 limit #{index},#{pageSize}
     </select>
     <resultMap id="op" type="com.mars.marsimmigrants.model.entity.News">
         <id column="news_id" property="news_id"></id>
@@ -18,23 +19,7 @@
         <result property="news_verifiedStatus" column="news_verifiedStatus"></result>
         <result property="news_optionsStatus" column="news_optionsStatus"></result>
     </resultMap>
-    <select id="selectNewsOpById" resultMap="op">
-        select * from nd_news where news_type=1 and news_verifiedStatus=1 and news_id=#{news_id}
+    <select id="nd_newsCount" resultType="int">
+        select count (news_id) from nd_news where  news_verifiedStatus=1
     </select>
-    <select id="selectNewsByTitleOrContent" resultMap="op">
-        select * from nd_news where news_type=1 and news_verifiedStatus=1 and ( news_title like "%"#{news_title}"%" or news_content like "%"#{news_content}"%")
-    </select>
-    <update id="updateNews">
-        update nd_news set news_title=#{news_title},news_content=#{news_content},news_updateTime=SYSDATE() where news_id=#{news_id}
-    </update>
-
-    <update id="updateNewsOpDelete">
-        update nd_news set news_optionsStatus=3 where news_id=#{news_id}
-    </update>
-    <update id="updateNewsOpUp">
-        update nd_news set news_optionsStatus=6 where news_id=#{news_id}
-    </update>
-    <update id="updateNewsOp">
-        update nd_news set news_optionsStatus=0 where news_id=#{news_id}
-    </update>
 </mapper>

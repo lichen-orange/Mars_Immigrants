@@ -5,10 +5,9 @@
         select * from nd_programs
     </select>
 
-
     <resultMap id="Programs_pic" type="com.mars.marsimmigrants.model.entity.Programs_pic">
         <id column="programs_pic_id"/>
         <result column="programs_id" property="programs_id"/>
         <result column="programs_pic_address" property="programs_pic_address"/>
     </resultMap>
-    </mapper>
+</mapper>

@@ -8,6 +8,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @MapperScan(basePackages = "com.mars.marsimmigrants.mapper")
+@MapperScan(basePackages = "com.mars.marsimmigrants.dao")
 @EnableSwagger2
 @EnableTransactionManagement
 public class MarsImmigrantsApplication {
