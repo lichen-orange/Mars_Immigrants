@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mars.marsimmigrants.dao.Programs_picDao">
+    <select id="getAllProgram" resultMap="Programs_pic">
+        select * from nd_programs
+    </select>
+
+
+    <resultMap id="Programs_pic" type="com.mars.marsimmigrants.model.entity.Programs_pic">
+        <id column="programs_pic_id"/>
+        <result column="programs_id" property="programs_id"/>
+        <result column="programs_pic_address" property="programs_pic_address"/>
+    </resultMap>
+    </mapper>
