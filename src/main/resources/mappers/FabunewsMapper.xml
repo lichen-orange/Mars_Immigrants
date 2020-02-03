@@ -3,7 +3,7 @@
 <mapper namespace="com.mars.marsimmigrants.mapper.fabunews">
 
     <insert id="addnews">
-      insert into nd_news(news_type,news_title,news_content,news_owner,news_createdTime,news_updateTime,news_level,news_status,news_verifiedStatus) VALUES(2,#{title},#{Content},#{owner},#{createTime},#{updateTime},1,1,0)
+      insert into nd_news(news_type,news_title,news_content,news_owner,news_createdTime,news_updateTime,news_level,news_status,news_verifiedStatus) VALUES(1,#{title},#{Content},#{owner},#{createTime},#{updateTime},1,1,0)
     </insert>
 
 </mapper>
