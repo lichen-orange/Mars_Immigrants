@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mars.marsimmigrants.mapper.NewsOptionsDao">
-    <select id="selectnNd_news" resultMap="op">
+    <select id="selectNewsOp" resultMap="op">
         select * from nd_news where news_type=1 and news_verifiedStatus=1
     </select>
     <resultMap id="op" type="com.mars.marsimmigrants.model.entity.News">

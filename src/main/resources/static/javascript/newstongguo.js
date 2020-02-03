@@ -16,37 +16,38 @@ $(function(){
       for(var i=0;i<arr.length;i++){
 
         if(arr[i].news_optionsStatus==3){
-          var text2="申请撤回等待审核";
+          var text2="申请撤回正在审核中";
           //var text2="<a href='javascript:void(0);' onclick='test1("+i+")' >"+ text + "</a>";
         }else if(arr[i].news_optionsStatus==0){
           var text1="申请撤回";
           var text3="申请修改";
-          var text2="<a href='javascript:void(0);' onclick='test1("+i+")' >"+ text1 + "</a>&nbsp;" +"<a href='javascript:void(0);' onclick='test3("+i+")' >"+ text3 + "</a>";
+          var text2="<a href='javascript:void(0);' onclick='test1("+i+")' >"+ text1 + "</a>&nbsp;&nbsp;&nbsp;&nbsp;" +"<a href='javascript:void(0);' onclick='test3("+i+")' >"+ text3 + "</a>";
         }else if(arr[i].news_optionsStatus==1){
           var text2="申请撤回已通过"
         }else if(arr[i].news_optionsStatus==2){
           var text="上次申请撤回未通过";
           var text1="再次申请撤回";
           var text3="申请修改";
-          var text2="<a href='javascript:void(0);' onclick='test1("+i+")' >"+ text1 + "</a>("+text +")&nbsp;<a href='javascript:void(0);' onclick='test3("+i+")' >"+ text3 + "</a>&nbsp;";
+          var text2="<a href='javascript:void(0);' onclick='test1("+i+")' >"+ text1 + "</a>("+text +")&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' onclick='test3("+i+")' >"+ text3 + "</a>&nbsp;";
         }else if(arr[i].news_optionsStatus==4){
           var text="申请修改已通过";
           var text1="申请撤回";
           var text3="可修改";
-          var text2="<a href='javascript:void(0);' onclick='test1("+i+")' >"+ text1 + "</a>" +"&nbsp;<a href='javascript:void(0);' onclick='test4("+i+")' >"+ text3 + "</a>("+text+")";
+          var text2="<a href='javascript:void(0);' onclick='test1("+i+")' >"+ text1 + "</a>" +"&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void(0);' onclick='test4("+i+")' >"+ text3 + "</a>("+text+")";
         }else if(arr[i].news_optionsStatus==5){
           var text="上次申请修改未通过";
           var text1="申请撤回";
           var text3="再次申请修改";
-          var text2="<a href='javascript:void(0);' onclick='test1("+i+")' >"+ text1 + "</a>&nbsp;" +"<a href='javascript:void(0);' onclick='test3("+i+")' >"+ text3 + "</a>("+text+")";
+          var text2="<a href='javascript:void(0);' onclick='test1("+i+")' >"+ text1 + "</a>&nbsp;&nbsp;&nbsp;&nbsp;" +"<a href='javascript:void(0);' onclick='test3("+i+")' >"+ text3 + "</a>("+text+")";
         }else if(arr[i].news_optionsStatus==6){
-          var text2="申请撤回等待审核";
+          var text2="申请修改正在审核中";
         }
         var unixTimestamp = new Date( arr[i].news_createdTime ) ;
         commonTime = unixTimestamp.toLocaleString();
+        var j=i+1;
         mycars1[i]="<span id='news_id"+i+"' value='"+arr[i].news_id+"'></span>";
         str = "<tr align='center'><td>"
-            +i
+            +j
             +"</td><td>"
             + arr[i].news_title
             + "</td><td>"

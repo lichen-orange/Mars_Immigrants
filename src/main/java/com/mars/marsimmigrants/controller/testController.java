@@ -31,7 +31,7 @@ public class testController {
     @Resource
     private testService ts;
 
-    @PostMapping("/showAllnews")
+    @RequestMapping("/showAllnews")
     public void showAllnews(HttpServletResponse response, @RequestParam(name="pageNo",required =false,defaultValue = "1")Integer pageNo,
                               @RequestParam(name="pageSize",required =false,defaultValue = "2" )Integer pageSize, Model model){
         PageDto<News> newsPageDto=ts.pdft(pageNo, 10);

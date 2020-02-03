@@ -28,7 +28,7 @@ public class testServiceImpl implements testService {
     @Override
     public PageDto<News> pdft(Integer pageNo, Integer pageSize) {
         //查询总数
-        Integer total=this.nd_newsCount();
+        Integer total=td.nd_newsCount();
         //设置当前页码
         Integer offset=( pageNo - 1 ) *  pageSize;
         List<News> nnList=td.selectnNd_news(offset, pageSize);
