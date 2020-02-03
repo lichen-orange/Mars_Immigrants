@@ -31,7 +31,7 @@ public class ClientLoginController {
             session.setAttribute("token",s);
             redisUtil.set(s,ndUsers);
             System.out.println("登陆成功");
-            return "/logintext.html";
+            return "/newsshow.html";
         }
         System.out.println("登陆失败");
         return "/login.html";
